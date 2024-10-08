@@ -15,7 +15,7 @@
     const originalOpen = XMLHttpRequest.prototype.open;
     const originalSend = XMLHttpRequest.prototype.send;
 
-    let lastRequestData = null; 
+    let lastRequestData = null;
     let endTime = null;
 
     let lastOffer = null
@@ -29,7 +29,7 @@
     let mulalpSecond_u = null
 
     // -------------------------------------------------------------------------------------------------
-    
+
 
     XMLHttpRequest.prototype.open = function (method, url) {
         this._method = method;
@@ -80,9 +80,9 @@
 
                     const xhr = new XMLHttpRequest();
                     xhr.open('POST', 'https://esatis.uyap.gov.tr/main/jsp/esatis/ihaleTeklifIslemleri_brd.ajx', true);
-                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
-                    xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);      
-                    
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);
+
                     const winOfferLog2 = document.createElement("div")
                     winOfferLog2.textContent = `${ourOffer} ile ihale alındı!`
                     winOfferLog2.style.color = "green"
@@ -110,7 +110,6 @@
     header.style.left = '0';
     header.style.right = '0';
     header.style.background = 'transparent';
-    header.style.zIndex = '999999999';
     header.style.height = '250px';
 
 
@@ -245,7 +244,7 @@
 
     // MULA CLICK EVENTS
     document.querySelector(".mulalpStartBtn").addEventListener("click", () => {
-        
+
         const mulalpMaxOffer = document.getElementById("mulalpMaxOffer")
         const mulalpAdd = document.getElementById("mulalpAdd")
         const mulalpSecond = document.getElementById("mulalpSecond")
@@ -253,7 +252,7 @@
         mulalpMaxOffer_u = Number(mulalpMaxOffer.value)
         mulalpAdd_u = Number(mulalpAdd.value)
         mulalpSecond_u = Number(mulalpSecond.value)
-        
+
 
         if (mulalpMaxOffer_u && mulalpAdd_u && mulalpSecond_u) {
 
@@ -263,13 +262,13 @@
                 mulalpMaxOffer.disabled = false
                 mulalpAdd.disabled = false
                 mulalpSecond.disabled = false
-    
+
                 const stopLog = document.createElement("div")
                 stopLog.textContent = "MULA Duraklatıldı!"
                 stopLog.style.color = "orange"
                 document.querySelector(".mulalpLogBox").appendChild(stopLog)
-    
-    
+
+
                 document.querySelector(".mulalpStartBtn").textContent = "Çalıştır!"
             }else{
                 mulaRUN = true
@@ -277,7 +276,7 @@
                 mulalpMaxOffer.disabled = true
                 mulalpAdd.disabled = true
                 mulalpSecond.disabled = true
-    
+
                 const startLog = document.createElement("div")
                 startLog.textContent = `Maksimum teklif : ${mulalpMaxOffer.value} / Bir önceki teklife ilave : ${mulalpAdd.value} / Teklife kalan saniye : ${mulalpSecond.value}`
                 document.querySelector(".mulalpLogBox").appendChild(startLog)
@@ -286,8 +285,8 @@
                 startLog2.textContent = "MULA Çalışıyor!"
                 startLog2.style.color = "green"
                 document.querySelector(".mulalpLogBox").appendChild(startLog2)
-    
-    
+
+
                 document.querySelector(".mulalpStartBtn").textContent = "Duraklat!"
             }
 
@@ -318,17 +317,18 @@
             MulaSecTimer.textContent = `${days} gün / ${hours} saat / ${minutes} dakika / ${seconds} saniye`
 
 
+
             if (mulaRUN) {
-                if (days == 0 && hours == 0 && minutes == 0 && seconds <= mulalpSecond_u) {
+                if (hours == 0 && minutes == 0 && days == 0 && seconds <= mulalpSecond_u) {
                     if (lastOffer + mulalpAdd_u <= mulalpMaxOffer_u && !mulaOFFER) {
                         mulaOFFER = true
                         ourOffer = lastOffer + mulalpAdd_u
 
                         const xhr = new XMLHttpRequest();
                         xhr.open('POST', 'https://esatis.uyap.gov.tr/main/jsp/esatis/ihaleTeklifIslemleri_brd.ajx', true);
-                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
-                        xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);    
-                        
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);
+
                         const winOfferLog = document.createElement("div")
                         winOfferLog.textContent = `${ourOffer} ile ihale alındı!`
                         winOfferLog.style.color = "green"
