@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     const originalOpen = XMLHttpRequest.prototype.open;
@@ -57,7 +57,7 @@
 
                 lastRequestData = body;
 
-                console.log("LAST OFFER : "+lastOffer)
+                console.log("LAST OFFER : " + lastOffer)
 
                 secTimer()
 
@@ -68,11 +68,13 @@
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(this.responseText, "text/xml");
 
+                const ihaleBitisZamani = xmlDoc.getElementsByTagName("ihaleBitisZamani")[0].textContent;
                 const sonTeklifIDBO = xmlDoc.getElementsByTagName("sonTeklif")[0].textContent;
 
                 lastOffer = Number(sonTeklifIDBO)
-
-                console.log("LAST OFFER : "+lastOffer)
+                endTime = new Date(ihaleBitisZamani)
+                
+                console.log("LAST OFFER : " + lastOffer)
 
 
                 if (mulaOFFER && ourOffer < lastOffer && lastOffer + mulalpAdd_u <= mulalpMaxOffer_u) {
@@ -88,7 +90,7 @@
                     winOfferLog2.style.color = "green"
                     document.querySelector(".mulalpLogBox").appendChild(winOfferLog2)
 
-                    console.log("teklif verildi!"+ourOffer)
+                    console.log("teklif verildi!" + ourOffer)
                 }
 
             }
@@ -270,7 +272,7 @@
 
 
                 document.querySelector(".mulalpStartBtn").textContent = "Çalıştır!"
-            }else{
+            } else {
                 mulaRUN = true
 
                 mulalpMaxOffer.disabled = true
@@ -291,7 +293,7 @@
             }
 
 
-        }else{
+        } else {
             const errorLog = document.createElement("div")
             errorLog.textContent = "Lütfen bütün alanları doldurunuz!"
             errorLog.style.color = "red"
@@ -303,7 +305,7 @@
     // -------------------------------------------------------------------------------------------------
 
 
-    function secTimer(){
+    function secTimer() {
         const now = new Date();
         const timeRemaining = endTime - now;
 
@@ -334,7 +336,7 @@
                         winOfferLog.style.color = "green"
                         document.querySelector(".mulalpLogBox").appendChild(winOfferLog)
 
-                        console.log("teklif verildi! "+ourOffer)
+                        console.log("teklif verildi! " + ourOffer)
                     }
                 }
             }
