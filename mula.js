@@ -27,6 +27,7 @@
     let mulalpMaxOffer_u = null
     let mulalpAdd_u = null
     let mulalpSecond_u = null
+    let mulalpMilisecond_u = null
 
     // -------------------------------------------------------------------------------------------------
 
@@ -73,7 +74,7 @@
 
                 lastOffer = Number(sonTeklifIDBO)
                 endTime = new Date(ihaleBitisZamani)
-                
+
                 console.log("LAST OFFER : " + lastOffer)
 
 
@@ -209,8 +210,7 @@
                 flex-direction: column;
                 overflow-y: hidden;
             " class="mulalpLogBox">
-                    <div><a style="color: purple;" target="_blank" href="https://www.instagram.com/felxcoder/">MULA ile
-                            ilgili detaylı bilgi için TIKLA!</a></div>
+                    <div><a style="color: purple;" target="_blank" href="https://viraportal.com/">MULA 2.0'ın detaylı bilgisi için tıkla!</a></div>
                     <div class="MulaSecTimerDiv">0 gün / 0 saat / 0 dakika / 0 saniye</div>
                 </div>
             </div>
@@ -251,12 +251,40 @@
         const mulalpAdd = document.getElementById("mulalpAdd")
         const mulalpSecond = document.getElementById("mulalpSecond")
 
+
+
+
+
+        const denemeTotal = Number(mulalpSecond.value)
+        const MulaFormattedNumber = denemeTotal.toFixed(3);
+        const [integerPart, decimalPart] = MulaFormattedNumber.split(".");
+
+        const mulaSaniye = Number(integerPart)
+        const mulaSalise = Number(decimalPart)
+
+        // console.log(mulaSaniye)
+        // console.log(mulaSalise)
+
+
+        // const denemeLog = document.createElement("div")
+        // denemeLog.textContent = `${integerPart} + ${decimalPart}`
+        // denemeLog.style.color = "orange"
+        // document.querySelector(".mulalpLogBox").appendChild(denemeLog)
+
+
+
+
+
+
         mulalpMaxOffer_u = Number(mulalpMaxOffer.value)
         mulalpAdd_u = Number(mulalpAdd.value)
-        mulalpSecond_u = Number(mulalpSecond.value)
+        mulalpSecond_u = mulaSaniye
+        mulalpMilisecond_u = mulaSalise
 
 
-        if (mulalpMaxOffer_u && mulalpAdd_u && mulalpSecond_u) {
+
+
+        if (mulalpMaxOffer_u && mulalpAdd_u && denemeTotal) {
 
             if (mulaRUN) {
                 mulaRUN = false
@@ -314,14 +342,21 @@
             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            const milliseconds = timeRemaining % 1000;
 
             const MulaSecTimer = document.querySelector('.MulaSecTimerDiv');
-            MulaSecTimer.textContent = `${days} gün / ${hours} saat / ${minutes} dakika / ${seconds} saniye`
+            MulaSecTimer.textContent = `${days} gün / ${hours} saat / ${minutes} dakika / ${seconds} saniye / ${milliseconds} salise`
 
+
+            // if (mulaRUN) {
+            //     if (milliseconds <= mulalpMilisecond_u) {
+            //         console.log(milliseconds + " " + mulalpMilisecond_u)
+            //     }
+            // }
 
 
             if (mulaRUN) {
-                if (hours == 0 && minutes == 0 && days == 0 && seconds <= mulalpSecond_u) {
+                if (hours == 0 && minutes == 0 && days == 0 && seconds == mulalpSecond_u && milliseconds <= mulalpMilisecond_u) {
                     if (lastOffer + mulalpAdd_u <= mulalpMaxOffer_u && !mulaOFFER) {
                         mulaOFFER = true
                         ourOffer = lastOffer + mulalpAdd_u
@@ -344,7 +379,7 @@
 
 
 
-            setTimeout(secTimer, 1000)
+            setTimeout(secTimer, 1)
         }
     }
 
