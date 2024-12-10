@@ -79,6 +79,7 @@
 
 
                 if (mulaOFFER && ourOffer < lastOffer && lastOffer + mulalpAdd_u <= mulalpMaxOffer_u) {
+                    mulaOFFER = false
                     ourOffer = lastOffer + mulalpAdd_u
 
                     const xhr = new XMLHttpRequest();
@@ -356,7 +357,7 @@
 
 
             if (mulaRUN) {
-                if (hours == 0 && minutes == 0 && days == 0 && seconds <= mulalpSecond_u && milliseconds <= mulalpMilisecond_u) {
+                if (hours == 0 && minutes == 0 && days == 0 && seconds <= mulalpSecond_u) {
                     if (lastOffer + mulalpAdd_u <= mulalpMaxOffer_u && !mulaOFFER) {
                         mulaOFFER = true
                         ourOffer = lastOffer + mulalpAdd_u
