@@ -85,7 +85,7 @@
                     const xhr = new XMLHttpRequest();
                     xhr.open('POST', 'https://esatis.uyap.gov.tr/pp/ihaleTeklifIslemleri_brd.ajx', true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);
+                    xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer.toFixed(2)}`);
 
                     const winOfferLog2 = document.createElement("div")
                     winOfferLog2.textContent = `${ourOffer} ile ihale alındı!`
@@ -365,7 +365,7 @@
                         const xhr = new XMLHttpRequest();
                         xhr.open('POST', 'https://esatis.uyap.gov.tr/pp/ihaleTeklifIslemleri_brd.ajx', true);
                         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                        xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);
+                        xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer.toFixed(2)}`);
 
                         const winOfferLog = document.createElement("div")
                         winOfferLog.textContent = `${ourOffer} ile ihale alındı!`
