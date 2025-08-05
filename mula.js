@@ -4,7 +4,7 @@
 // @version      2024-10-04
 // @description  Creator : @felxcoder
 // @author       @felxcoder
-// @match        https://esatis.uyap.gov.tr/main/jsp/esatis/index.jsp?menuId=*&kayitId=*
+// @match        https://esatis.uyap.gov.tr/pp/index.jsp?menuId=*&kayitId=*
 // @icon         https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e7/Diamond_Pickaxe_JE3_BE3.png/revision/latest/scale-to-width/360?cb=20200226193952
 // @grant        none
 // ==/UserScript==
@@ -83,7 +83,7 @@
                     ourOffer = lastOffer + mulalpAdd_u
 
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'https://esatis.uyap.gov.tr/main/jsp/esatis/ihaleTeklifIslemleri_brd.ajx', true);
+                    xhr.open('POST', 'https://esatis.uyap.gov.tr/pp/ihaleTeklifIslemleri_brd.ajx', true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);
 
@@ -363,7 +363,7 @@
                         ourOffer = lastOffer + mulalpAdd_u
 
                         const xhr = new XMLHttpRequest();
-                        xhr.open('POST', 'https://esatis.uyap.gov.tr/main/jsp/esatis/ihaleTeklifIslemleri_brd.ajx', true);
+                        xhr.open('POST', 'https://esatis.uyap.gov.tr/pp/ihaleTeklifIslemleri_brd.ajx', true);
                         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                         xhr.send(`${lastRequestData}&teklifMiktari=${ourOffer}.00`);
 
